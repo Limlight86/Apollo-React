@@ -1,16 +1,13 @@
+import Resolutions from "./resolutions";
+
+Resolutions.insert({
+  name: "test Res"
+});
+
 export default {
   Query: {
     resolutions() {
-      return [
-        {
-          _id: "1",
-          name: "get stuff done!"
-        },
-        {
-          _id: "2",
-          name: "learn graphql!"
-        }
-      ];
+      return Resolutions.find({}).fetch();
     }
   }
 };
