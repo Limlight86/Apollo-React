@@ -2,7 +2,8 @@ import Resolutions from "./resolutions";
 
 export default {
   Query: {
-    resolutions() {
+    resolutions(obj, args, { userId }) {
+      console.log(userId);
       return Resolutions.find({}).fetch();
     }
   },
@@ -12,7 +13,7 @@ export default {
       const resolutionId = Resolutions.insert({
         name
       });
-      return Resolutions.findOne(resolutionId)
+      return Resolutions.findOne(resolutionId);
     }
   }
 };
