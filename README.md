@@ -7,3 +7,6 @@ https://www.leveluptutorials.com/tutorials/full-stack-graphql-with-apollo-meteor
 In this free series, I'll be teaching GraphQL with Apollo, Meteor & React to build a full-stack app.
 
 Series code repo: https://github.com/leveluptuts/fullstack-graphql-apollo-react-meteor
+
+https://www.apollographql.com/
+https://www.meteor.com/
