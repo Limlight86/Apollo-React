@@ -8,5 +8,5 @@ In this free series, I'll be teaching GraphQL with Apollo, Meteor & React to bui
 
 Series code repo: https://github.com/leveluptuts/fullstack-graphql-apollo-react-meteor
 
-https://www.apollographql.com/
+https://www.apollographql.com/ <br>
 https://www.meteor.com/
