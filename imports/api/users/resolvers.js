@@ -1,12 +1,10 @@
 export default {
   Query: {
     user(obj, args, { user }) {
-      return user;
+      return user
     }
   },
   User: {
-    email: user => {
-      return user.emails[0].address
-     }
+    email: user => user.emails[0].address
   }
 };
