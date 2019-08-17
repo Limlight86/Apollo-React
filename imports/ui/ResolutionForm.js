@@ -12,13 +12,16 @@ const createResolution = gql`
 
 class ResolutionForm extends Component {
   submitForm = () => {
-    this.props.createResolution({
-      variables: {
-        name: this.name.value
-      }
-    }).catch(error =>{
-      console.log(error)
-    });
+    this.props
+      .createResolution({
+        variables: {
+          name: this.name.value
+        }
+      })
+      .then(() => (this.name.value = ""))
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   render() {
@@ -33,7 +36,7 @@ class ResolutionForm extends Component {
 
 export default graphql(createResolution, {
   name: "createResolution",
-  options:{
-    refetchQueries:["Resolutions"]
+  options: {
+    refetchQueries: ["Resolutions"]
   }
 })(ResolutionForm);

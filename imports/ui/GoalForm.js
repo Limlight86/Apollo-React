@@ -12,14 +12,19 @@ const createGoal = gql`
 
 class GoalForm extends Component {
   submitForm = () => {
-    this.props.createGoal({
-      variables: {
-        name: this.name.value,
-        resolutionId: this.props.resolutionId
-      }
-    }).catch(error =>{
-      console.log(error)
-    });
+    this.props
+      .createGoal({
+        variables: {
+          name: this.name.value,
+          resolutionId: this.props.resolutionId
+        }
+      })
+      .then(() => {
+        this.name.value = "";
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   render() {
@@ -33,5 +38,8 @@ class GoalForm extends Component {
 }
 
 export default graphql(createGoal, {
-  name: "createGoal"
+  name: "createGoal",
+  options: {
+    refetchQueries: ["Resolutions"]
+  }
 })(GoalForm);
