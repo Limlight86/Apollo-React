@@ -10,27 +10,29 @@ const App = ({ loading, resolutions, client, user }) => {
   if (loading) return null;
   return (
     <div>
-      {user._id ? (
-        <button
-          onClick={() => {
-            Meteor.logout();
-            client.resetStore();
-          }}
-        >
-          Logout
-        </button>
+      {user ? (
+        <div>
+          <button
+            onClick={() => {
+              Meteor.logout();
+              client.resetStore();
+            }}
+          >
+            Logout
+          </button>
+          <ResolutionForm />
+          <ul>
+            {resolutions.map(resolution => (
+              <li key={resolution._id}>{resolution.name}</li>
+            ))}
+          </ul>
+        </div>
       ) : (
         <div>
           <RegisterForm client={client} />
           <LoginForm client={client} />
         </div>
       )}
-      <ResolutionForm />
-      <ul>
-        {resolutions.map(resolution => (
-          <li key={resolution._id}>{resolution.name}</li>
-        ))}
-      </ul>
     </div>
   );
 };
