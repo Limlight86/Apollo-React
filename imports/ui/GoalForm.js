@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useRef } from "react";
 import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 
@@ -10,32 +10,31 @@ const createGoal = gql`
   }
 `;
 
-class GoalForm extends Component {
+const GoalForm = ({ createGoal, resolutionId }) => {
+  const input = useRef();
+
   submitForm = () => {
-    this.props
-      .createGoal({
-        variables: {
-          name: this.name.value,
-          resolutionId: this.props.resolutionId
-        }
-      })
+    createGoal({
+      variables: {
+        name: input.current.value,
+        resolutionId: resolutionId
+      }
+    })
       .then(() => {
-        this.name.value = "";
+        input.current.value = "";
       })
       .catch(error => {
         console.log(error);
       });
   };
 
-  render() {
-    return (
-      <div>
-        <input type="text" ref={input => (this.name = input)} />
-        <button onClick={this.submitForm}>Submit</button>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <input type="text" ref={input} />
+      <button onClick={submitForm}>Submit</button>
+    </div>
+  );
+};
 
 export default graphql(createGoal, {
   name: "createGoal",
