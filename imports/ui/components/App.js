@@ -4,15 +4,15 @@ import { withApollo } from "react-apollo";
 import { resolutionsQuery } from "../../api/queries";
 import { LoggedInView, LoggedOutView } from "../../ui";
 
-const App = ({ loading, resolutions, client, user }) => {
+const App = ({ loading, client, resolutions, user }) => {
   if (loading) return null;
   return (
     <div>
-      {user ? (
-        <LoggedInView client={client} resolutions={resolutions} />
-      ) : (
+      {user ? 
+        <LoggedInView resolutions={resolutions} client={client} />
+      : 
         <LoggedOutView client={client} />
-      )}
+      }
     </div>
   );
 };
