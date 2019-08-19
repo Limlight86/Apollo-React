@@ -18,15 +18,11 @@ const GoalForm = ({ createGoal, resolutionId }) => {
       createGoal({
         variables: {
           name: input.current.value,
-          resolutionId: resolutionId
+          resolutionId
         }
       })
-        .then(() => {
-          input.current.value = "";
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      .then(() => input.current.value = "")
+      .catch(error => console.log(error));
     }
   };
 
