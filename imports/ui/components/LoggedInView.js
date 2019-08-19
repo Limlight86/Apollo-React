@@ -1,5 +1,5 @@
 import React from "react";
-import { ResolutionForm, Goal, GoalForm } from "../../ui";
+import { ResolutionForm, Resolution } from "../../ui";
 
 const LoggedInView = ({ client, resolutions }) => (
   <div>
@@ -14,21 +14,7 @@ const LoggedInView = ({ client, resolutions }) => (
     <ResolutionForm />
     <ul>
       {resolutions.map(resolution => (
-        <li key={resolution._id}>
-          <span
-            style={{
-              textDecoration: resolution.completed ? "line-through" : "none"
-            }}
-          >
-            {resolution.name}
-          </span>
-          <ul>
-            {resolution.goals.map(goal => (
-              <Goal goal={goal} key={goal._id} />
-            ))}
-          </ul>
-          <GoalForm resolutionId={resolution._id} />
-        </li>
+        <Resolution resolution={resolution} key={resolution._id} />
       ))}
     </ul>
   </div>
