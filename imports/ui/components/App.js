@@ -1,7 +1,7 @@
 import React from "react";
-import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 import { withApollo } from "react-apollo";
+import { resolutionsQuery } from "../../api/queries";
 import { LoggedInView, LoggedOutView } from "../../ui";
 
 const App = ({ loading, resolutions, client, user }) => {
@@ -17,24 +17,7 @@ const App = ({ loading, resolutions, client, user }) => {
   );
 };
 
-const resolutionsQuery = gql`
-  query Resolutions {
-    resolutions {
-      _id
-      name
-      completed
-      goals {
-        _id
-        name
-        completed
-      }
-    }
-    user {
-      _id
-      email
-    }
-  }
-`;
+resolutionsQuery;
 
 export default graphql(resolutionsQuery, {
   props: ({ data }) => ({ ...data })
