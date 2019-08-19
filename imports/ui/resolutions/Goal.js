@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 
@@ -10,26 +10,26 @@ const toggleGoal = gql`
   }
 `;
 
-class Goal extends Component {
-  toggleGoal = () => {
-    this.props.toggleGoal({
+const Goal = ({ toggleGoal, goal }) => {
+  const { name, completed, _id } = goal;
+
+  toggle = () => {
+    toggleGoal({
       variables: {
-        id: this.props.goal._id
+        id: _id
       }
     });
   };
-  render() {
-    const { name, completed } = this.props.goal;
-    return (
-      <li>
-        <input type="checkbox" onChange={this.toggleGoal} checked={completed} />
-        <span style={{ textDecoration: completed ? "line-through" : 'none' }}>
-          {name}
-        </span>
-      </li>
-    );
-  }
-}
+
+  return (
+    <li>
+      <input type="checkbox" onChange={toggle} checked={completed} />
+      <span style={{ textDecoration: completed ? "line-through" : "none" }}>
+        {name}
+      </span>
+    </li>
+  );
+};
 
 export default graphql(toggleGoal, {
   name: "toggleGoal",

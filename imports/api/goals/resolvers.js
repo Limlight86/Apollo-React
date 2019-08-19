@@ -2,7 +2,7 @@ import Goals from "./goals";
 
 export default {
   Mutation: {
-    createGoal(obj, { name, resolutionId, userId }) {
+    createGoal(obj, { name, resolutionId }, { userId }) {
       if (userId) {
         const goalId = Goals.insert({
           name,

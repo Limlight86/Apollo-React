@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useRef } from "react";
 import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 
@@ -10,29 +10,26 @@ const createResolution = gql`
   }
 `;
 
-class ResolutionForm extends Component {
+const ResolutionForm = ({ createResolution }) => {
+  const input = useRef();
+
   submitForm = () => {
-    this.props
-      .createResolution({
-        variables: {
-          name: this.name.value
-        }
-      })
-      .then(() => (this.name.value = ""))
-      .catch(error => {
-        console.log(error);
-      });
+    createResolution({
+      variables: {
+        name: input.current.value
+      }
+    })
+    .then(() => input.current.value = "")
+    .catch(error => console.log(error));
   };
 
-  render() {
-    return (
-      <div>
-        <input type="text" ref={input => (this.name = input)} />
-        <button onClick={this.submitForm}>Submit</button>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <input type="text" ref={input} />
+      <button onClick={submitForm}>Submit</button>
+    </div>
+  );
+};
 
 export default graphql(createResolution, {
   name: "createResolution",
