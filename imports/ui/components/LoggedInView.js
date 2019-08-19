@@ -1,5 +1,5 @@
 import React from "react";
-import { ResolutionForm, Resolution } from "../../ui";
+import { ResolutionForm, ResolutionsList } from "../../ui";
 
 const LoggedInView = ({ client, resolutions }) => (
   <div>
@@ -12,11 +12,7 @@ const LoggedInView = ({ client, resolutions }) => (
       Logout
     </button>
     <ResolutionForm />
-    <ul>
-      {resolutions.map(resolution => (
-        <Resolution resolution={resolution} key={resolution._id} />
-      ))}
-    </ul>
+    <ResolutionsList resolutions={resolutions} />
   </div>
 );
 
