@@ -14,18 +14,20 @@ const GoalForm = ({ createGoal, resolutionId }) => {
   const input = useRef();
 
   submitForm = () => {
-    createGoal({
-      variables: {
-        name: input.current.value,
-        resolutionId: resolutionId
-      }
-    })
-      .then(() => {
-        input.current.value = "";
+    if (input.current.value.trim()) {
+      createGoal({
+        variables: {
+          name: input.current.value,
+          resolutionId: resolutionId
+        }
       })
-      .catch(error => {
-        console.log(error);
-      });
+        .then(() => {
+          input.current.value = "";
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
   };
 
   return (
