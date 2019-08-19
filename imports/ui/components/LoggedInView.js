@@ -1,16 +1,9 @@
 import React from "react";
-import { ResolutionForm, ResolutionsList } from "../../ui";
+import { ResolutionForm, ResolutionsList, LogoutButton } from "../../ui";
 
 const LoggedInView = ({ client, resolutions }) => (
   <div>
-    <button
-      onClick={() => {
-        Meteor.logout();
-        client.resetStore();
-      }}
-    >
-      Logout
-    </button>
+    <LogoutButton client={client} />
     <ResolutionForm />
     <ResolutionsList resolutions={resolutions} />
   </div>
