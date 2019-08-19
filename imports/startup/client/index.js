@@ -6,7 +6,7 @@ import { ApolloLink, from } from "apollo-link";
 import { ApolloClient } from "apollo-client";
 import { HttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
-import App from "../../ui/App";
+import { App } from "../../ui/";
 
 const httpLink = new HttpLink({
   uri: Meteor.absoluteUrl("graphql")

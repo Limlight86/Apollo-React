@@ -14,13 +14,15 @@ const ResolutionForm = ({ createResolution }) => {
   const input = useRef();
 
   submitForm = () => {
-    createResolution({
-      variables: {
-        name: input.current.value
-      }
-    })
-    .then(() => input.current.value = "")
-    .catch(error => console.log(error));
+    if (input.current.value.trim()) {
+      createResolution({
+        variables: {
+          name: input.current.value
+        }
+      })
+        .then(() => (input.current.value = ""))
+        .catch(error => console.log(error));
+    }
   };
 
   return (
